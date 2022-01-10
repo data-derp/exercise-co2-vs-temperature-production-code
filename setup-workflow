@@ -5,7 +5,7 @@ set -e
 script_dir=$(cd "$(dirname "$0")" ; pwd -P)
 usage() { echo "Usage: $0 [-p <project name: string>] [-m <module name: string>] [-r <aws region: string>]" 1>&2; exit 1; }
 
-while getopts ":p:m:" o; do
+while getopts ":p:m:r:" o; do
     case "${o}" in
         p)
             project=${OPTARG}
@@ -23,7 +23,7 @@ while getopts ":p:m:" o; do
 done
 shift $((OPTIND-1))
 
-if [ -z "${project}" ] || [ -z "${module}" ] || || [ -z "${region}" ]; then
+if [ -z "${project}" ] || [ -z "${module}" ] || [ -z "${region}" ]; then
     usage
 fi
 
