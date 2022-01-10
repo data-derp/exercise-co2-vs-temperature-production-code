@@ -3,7 +3,7 @@
 set -e
 
 script_dir=$(cd "$(dirname "$0")" ; pwd -P)
-usage() { echo "Usage: $0 [-p <project name: string>] [-m <module name: string>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-p <project name: string>] [-m <module name: string>] [-r <aws region: string>]" 1>&2; exit 1; }
 
 while getopts ":p:m:" o; do
     case "${o}" in
@@ -13,6 +13,9 @@ while getopts ":p:m:" o; do
         m)
             module=${OPTARG}
             ;;
+        r)
+            region=${OPTARG}
+            ;;
         *)
             usage
             ;;
@@ -20,7 +23,7 @@ while getopts ":p:m:" o; do
 done
 shift $((OPTIND-1))
 
-if [ -z "${project}" ] || [ -z "${module}" ]; then
+if [ -z "${project}" ] || [ -z "${module}" ] || || [ -z "${region}" ]; then
     usage
 fi
 
@@ -30,9 +33,11 @@ pushd "${script_dir}" > /dev/null
   if [ $OSTYPE == "linux-gnu" ]; then
     sed -i -e s/example1\-example2/${module}/g ./.github/workflows/build-test-deploy.yml
     sed -i -e s/example\-project/${project}/g ./.github/workflows/build-test-deploy.yml
+    sed -i -e s/project\-aws\-region/${region}/g ./.github/workflows/build-test-deploy.yml
   else
     sed -i '' -e s/example1\-example2/${module}/g ./.github/workflows/build-test-deploy.yml
     sed -i '' -e s/example\-project/${project}/g ./.github/workflows/build-test-deploy.yml
+    sed -i '' -e s/project\-aws\-region/${region}/g ./.github/workflows/build-test-deploy.yml
   fi
   echo "Workflow created"
 popd > /dev/null

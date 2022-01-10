@@ -3,6 +3,7 @@ name: 'Build, Test, Deploy'
 env:
   PROJECT_NAME: example-project
   MODULE_NAME: example1-example2
+  PROJECT_AWS_REGION: project-aws-region
 
 on:
   push:
@@ -32,6 +33,7 @@ jobs:
           aws cloudformation create-stack --stack-name "${PROJECT_NAME}-${MODULE_NAME}-co2-tmp-s3-bucket" \
               --template-body file://./template.yaml \
               --capabilities CAPABILITY_NAMED_IAM \
+              --region ${PROJECT_AWS_REGION} \
               --parameters ParameterKey=ProjectName,ParameterValue=${PROJECT_NAME} ParameterKey=ModuleName,ParameterValue=${MODULE_NAME}
 
   data-ingestion-test:
