@@ -29,13 +29,17 @@ jobs:
 
       - name: Create S3 Bucket
         run: |
-          curl -o template.yaml https://raw.githubusercontent.com/data-derp/bootstrap-github-runner-cloudformation/master/s3-bucket/template.yaml
-          aws cloudformation create-stack --stack-name "${PROJECT_NAME}-${MODULE_NAME}-co2-tmp-s3-bucket" \
+          stack_name="${PROJECT_NAME}-${MODULE_NAME}-co2-tmp-s3-bucket"
+          if [[ ! $(aws cloudformation describe-stacks --stack-name "${stack_name}" --region ${PROJECT_AWS_REGION}) ]]; then
+            echo "Downloading template..."
+            curl -o template.yaml https://raw.githubusercontent.com/data-derp/bootstrap-github-runner-cloudformation/master/s3-bucket/template.yaml
+            echo "Stack (${stack_name}) does not exist. Creating..."
+            aws cloudformation create-stack --stack-name "${PROJECT_NAME}-${MODULE_NAME}-co2-tmp-s3-bucket" \
               --template-body file://./template.yaml \
               --capabilities CAPABILITY_NAMED_IAM \
               --region ${PROJECT_AWS_REGION} \
               --parameters ParameterKey=ProjectName,ParameterValue=${PROJECT_NAME} ParameterKey=ModuleName,ParameterValue=${MODULE_NAME}
-
+          fi
   data-ingestion-test:
     name: 'Test Data Ingestion'
     runs-on: self-hosted
@@ -91,6 +95,7 @@ jobs:
     name: 'Test Data Transformation'
     runs-on: self-hosted
     environment: production
+    needs: ["data-ingestion"]
     container:
       image: ghcr.io/kelseymok/pyspark-testing-env:latest
       credentials:
