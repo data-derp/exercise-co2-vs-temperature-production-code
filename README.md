@@ -8,6 +8,8 @@ To recall, the relevant questions that this code aims to answer are the followin
 
 For more information on the data sources, please visit the [associated Databricks exercise](https://github.com/data-derp/exercise-co2-vs-temperature-databricks).
 
+This code is designed to be deployed as an AWS Glue Job.
+
 ## Prerequisites
 * Basic knowledge of Python, Spark, Docker, Terraform
 * Access to an AWS account (Optional)
