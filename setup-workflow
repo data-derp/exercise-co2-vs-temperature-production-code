@@ -26,13 +26,13 @@ fi
 
 pushd "${script_dir}" > /dev/null
   echo "Creating workflow"
-  cp .github/workflows/example.yml.tpl ".github/workflows/${module}.yml"
+  cp .github/workflows/example.yml.tpl ".github/workflows/build-test-deploy.yml"
   if [ $OSTYPE == "linux-gnu" ]; then
-    sed -i -e s/example1\-example2/${module}/g ./.github/workflows/${module}.yml
-    sed -i -e s/example\-project/${project}/g ./.github/workflows/${module}.yml
+    sed -i -e s/example1\-example2/${module}/g ./.github/workflows/build-test-deploy.yml
+    sed -i -e s/example\-project/${project}/g ./.github/workflows/build-test-deploy.yml
   else
-    sed -i '' -e s/example1\-example2/${module}/g ./.github/workflows/${module}.yml
-    sed -i '' -e s/example\-project/${project}/g ./.github/workflows/${module}.yml
+    sed -i '' -e s/example1\-example2/${module}/g ./.github/workflows/build-test-deploy.yml
+    sed -i '' -e s/example\-project/${project}/g ./.github/workflows/build-test-deploy.yml
   fi
   echo "Workflow created"
 popd > /dev/null
