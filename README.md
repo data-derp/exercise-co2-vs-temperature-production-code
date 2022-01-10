@@ -42,12 +42,14 @@ git rebase source/master
 ## Pipeline (optional)
 1. Bootstrap a Self-Hosted Github Runner
    * Hint: [What is a Github Self-hosted Runner?](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
-   * `git submodule add git@github.com:data-derp/bootstrap-github-runner-cloudformation.git`
+   * In the root of this repository: `git submodule add git@github.com:data-derp/bootstrap-github-runner-cloudformation.git`
    * Ensure your AWS Credentials are still valid and stored in an AWS Profile called `data-derp`
    * `./bootstrap-github-runner-cloudformation/github-runner/aws-deps -p <project-name> -m <module-name> -u <your-github-username>`
-2. Create a Github workflow: `./go setup-workflow -p <project-name> -m <module-name>`
+2. Go to your Repository and click Settings > Actions. Ensure "Allow All Actions" is selected
+3. Create a Github workflow: `./go setup-workflow -p <project-name> -m <module-name>`
   * The `project-name` and `module-name` must be the same as step (3)
-3. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
+4. Commit the new workflow template and push to see your changes.
+5. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order) and push to see your changes run in the pipeline. See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
 
 ## Future Development
 - [ ] Dockerise `./setup-workflow`
