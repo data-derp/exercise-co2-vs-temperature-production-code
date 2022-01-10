@@ -47,7 +47,7 @@ git rebase source/master
    * `./bootstrap-github-runner-cloudformation/github-runner/aws-deps -p <project-name> -m <module-name> -u <your-github-username>`
 2. Create a Github workflow: `./go setup-workflow -p <project-name> -m <module-name>`
   * The `project-name` and `module-name` must be the same as step (3)
-3. Fix the tests in `data-ingestion/` and `data-transformation` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
+3. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
 
 ## Future Development
 - [ ] Dockerise `./setup-workflow`
