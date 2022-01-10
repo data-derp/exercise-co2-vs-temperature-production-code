@@ -17,8 +17,9 @@ This code is designed to be deployed as an AWS Glue Job.
 ## Quickstart
 1. [Mirror this repo](#mirror-the-repository) in your account as a **PRIVATE** repo (since you're running your own self-hosted Github Runners, you'll want to ensure your project is Private)
 2. Set up your [Development Environment](./development-environment.md)
-3. **Optionally** set up the [pipeline](#pipeline-optional)
-4. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
+3. Fetch input data: `./go fetch-data`
+4. **Optionally** set up the [pipeline](#pipeline-optional)
+5. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
 
 ## Mirror the Repository
 1. Start importing a repository in your Github account:  
@@ -47,7 +48,7 @@ git rebase source/master
    * `./bootstrap-github-runner-cloudformation/github-runner/aws-deps -p <project-name> -m <module-name> -u <your-github-username>`
 2. Go to your Repository and click **Settings** > **Actions**. Ensure **"Allow All Actions"** is selected
 ![allow-actions.png](./assets/allow-actions.png)
-3. Create a Github workflow: `./go setup-workflow -p <project-name> -m <module-name>`
+3. Create a Github workflow: `./go setup-workflow -p <project-name> -m <module-name> -r <project-aws-region>`
   * The `project-name` and `module-name` must be the same as step (3)
 4. Commit the new workflow template and push to see your changes.
 5. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order) and push to see your changes run in the pipeline. See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
