@@ -1,0 +1,17 @@
+{
+    "image": "ghcr.io/data-derp/dev-container:master",
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "hashicorp.terraform"
+    ],
+    "settings": {
+        "jupyter.alwaysTrustNotebooks": true,
+        "jupyter.ignoreVscodeTheme": true,
+        "editor.acceptSuggestionOnEnter": "off",
+        "filetalls.autoSave": "afterDelay",
+        "python.analysis.useImportHeuristic": true
+    }, 
+    "postCreateCommand": "pip install --editable ./test-utils --editable ./data-ingestion --editable ./data-transformation"
+}
