@@ -14,6 +14,8 @@ In order to reduce the amount of effort of setting up development environments a
    - **Pylance** (author: Microsoft)
 3. In VS Code's top menu: **View** > **Command Palette...**. Type **Remote-Containers: Open Folder in Container**
 4. Navigate to the root of this repository (**exercise-co2-vs-temperature-production-code**), then click 'Open'. 
+5. In VS Code's top menu: **View** > **Command Palette...**. Type **Python: Select Interpreter** and select **Python 3.7.12**
+![python-interpreter.png](./assets/python-interpreter.png)
 
 ## Executing Python Code
 You have two options:
@@ -22,6 +24,11 @@ You have two options:
 - Create a new .ipynb file and start experimenting with an interactive notebook
 
 ## Testing
+### GUI
+1. In VS Code's top menu: **View** > **Command Palette...**. Type **Python: Configure Tests** and select **pytest** and then select the relevant directory (`data-ingestion` or `data-transformation`).
+2. Click the play button to run the test.
+
+### CLI
 1. From a terminal **inside VS Code**, run `python -m pytest` from the root of the repository if you want to test all modules/exercises
 2. Otherwise, cd into the relevant directory and run `python -m pytest`
 3. You can also open any of the test_xxx.py files (e.g. `test_transformation.py`) and hit the Play button
