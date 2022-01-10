@@ -24,7 +24,7 @@ This code is designed to be deployed as an AWS Glue Job.
 1. Start importing a repository in your Github account:  
    ![import-menu](./assets/import-menu.png)
 
-2. Import the `git@github.com:data-derp/exercise-co2-vs-temperature-production-code.git` as a **PRIVATE** repo called `exercise-co2-vs-temperature-production-code.git`:
+2. Import the `https://github.com/data-derp/exercise-co2-vs-temperature-production-code` as a **PRIVATE** repo called `exercise-co2-vs-temperature-production-code`:
    ![import-form](./assets/import-form.png)
 
 3. Clone the new repo locally and add the original repository as a source:
