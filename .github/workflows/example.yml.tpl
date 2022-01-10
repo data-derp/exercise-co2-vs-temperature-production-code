@@ -26,9 +26,8 @@ jobs:
       - name: Assume Role
         run: assume-role ${PROJECT_NAME}-${MODULE_NAME}-github-runner-aws
 
-      - name: Upload Main.py
+      - name: Create S3 Bucket
         run: |
-          cd ${SUBDIR}/src
           curl -o template.yaml https://raw.githubusercontent.com/data-derp/bootstrap-github-runner-cloudformation/master/s3-bucket/template.yaml
           aws cloudformation create-stack --stack-name "${PROJECT_NAME}-${MODULE_NAME}-co2-tmp-s3-bucket" \
               --template-body file://./template.yaml \
