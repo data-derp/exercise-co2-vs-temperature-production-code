@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Assume Role
         run: assume-role ${PROJECT_NAME}-${MODULE_NAME}-github-runner-aws
@@ -45,7 +47,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+        with:
+          submodules: recursive
       - name: Test Data Ingestion
         env:
           SUBDIR: data-ingestion
@@ -67,6 +70,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Assume Role
         run: assume-role ${PROJECT_NAME}-${MODULE_NAME}-github-runner-aws
@@ -97,6 +102,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Test Data Transformation
         env:
@@ -119,6 +126,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Assume Role
         run: assume-role ${PROJECT_NAME}-${MODULE_NAME}-github-runner-aws
