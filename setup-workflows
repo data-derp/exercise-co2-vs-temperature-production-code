@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -e
+
+script_dir=$(cd "$(dirname "$0")" ; pwd -P)
+usage() { echo "Usage: $0 [-p <project name: string>] [-m <module name: string>] [-r <aws region: string>]" 1>&2; exit 1; }
+
+while getopts ":p:m:r:" o; do
+    case "${o}" in
+        p)
+            project=${OPTARG}
+            ;;
+        m)
+            module=${OPTARG}
+            ;;
+        r)
+            region=${OPTARG}
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [ -z "${project}" ] || [ -z "${module}" ] || [ -z "${region}" ]; then
+    usage
+fi
+
+replace_params() {
+  target_file=${1}
+  if [ -z "${target_file}" ]; then
+    echo "TARGET_FILE missing. Usage: <func: replace_params> target_file"
+    exit 1
+  fi
+
+  if [ $OSTYPE == "linux-gnu" ]; then
+    sed -i -e s/example1\-example2/${module}/g "${target_file}"
+    sed -i -e s/example\-project/${project}/g "${target_file}"
+    sed -i -e s/project\-aws\-region/${region}/g "${target_file}"
+  else
+    sed -i '' -e s/example1\-example2/${module}/g "${target_file}"
+    sed -i '' -e s/example\-project/${project}/g "${target_file}"
+    sed -i '' -e s/project\-aws\-region/${region}/g "${target_file}"
+  fi
+}
+
+
+pushd "${script_dir}" > /dev/null
+  echo "Creating build-test-deploy workflow"
+  cp .github/workflows/example.yml.tpl ".github/workflows/build-test-deploy.yml"
+  replace_params ".github/workflows/build-test-deploy.yml"
+  echo "build-test-deploy workflow created"
+
+  echo "Creating delete workflow"
+  cp .github/workflows/example-delete.yml.tpl ".github/workflows/delete.yml"
+  replace_params ".github/workflows/delete.yml"
+  echo "delete workflow created"
+
+popd > /dev/null
+

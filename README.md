@@ -44,12 +44,16 @@ git rebase source/master
 In this step, we will bootstrap a Self-Hosted Github Runner. [What is a Github Self-hosted Runner?](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
 
 1. Set up a [Github Runner](https://github.com/data-derp/github-runner-aws-cloudformation#setup)
-2. Commit the new workflow template and push to see your changes.
-3. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order) and push to see your changes run in the pipeline. See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
+2. Set up workflows:
+```bash
+./setup-workflows -p <your-project-name> -m <your-module-name> -r <aws-region>
+```
+3. Commit the new workflow template and push to see your changes.
+4. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order) and push to see your changes run in the pipeline. See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
 
 ## Future Development
 - [ ] Script to pull in data
-- [ ] Dockerise `./setup-workflow`
+- [ ] Dockerise `./setup-workflows`
 - [ ] Option for running Github Runner locally in a Docker container
 - [ ] Manual workflow to delete S3 Bucket and contents
 - [ ] Manual workflow to delete Github Runner Cloudformation Stack (and Github Runner Reg Token)
