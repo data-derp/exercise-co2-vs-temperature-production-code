@@ -22,6 +22,22 @@ This code is designed to be deployed as an AWS Glue Job.
 5. **Sort of optional.** If you set up the pipeline in (4), you'll need to set up an AWS bucket to interact with
    * Simply run: `git submodule add git@github.com:data-derp/s3-bucket-aws-cloudformation.git` and the pipeline will take care of [setting up the bucket](https://github.com/data-derp/s3-bucket-aws-cloudformation#setup) for you
 6. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
+7. [Delete your AWS Resources](#delete-your-aws-resources) when you're done if you ran (4) and (5) (or risk AWS charges)
+
+## Delete your AWS Resources
+### Github Runner
+The Github Runner is the most expensive piece of infrastructure and can easily rack up charges. It's your responsibility to bring them down again. There is a "Self-Destruct" workflow that we provide which triggers the deletion, but doesn't check the final status (because once the Github Runner has been deleted, we don't have the AWS connection to check it from the pipeline.) 
+
+Manually trigger the workflow:
+![delete-github-runner.png](./assets/delete-github-runner.png)
+
+Once this pipeline is successful, please visit AWS Cloudformation to ensure that the stack has been successfully deleted.
+
+### AWS S3 Bucket
+We provide a "Delete AWS Resources" pipeline which deletes the S3 bucket created in the Quickstart. 
+
+Manually trigger the workflow:
+![delete-aws-resources.png](./assets/delete-aws-resources.png)
 
 ## Mirror the Repository
 1. Start importing a repository in your Github account:  
