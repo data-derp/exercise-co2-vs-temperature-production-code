@@ -26,7 +26,7 @@ jobs:
 
       - name: Delete S3 Bucket
         run: |
-          if $(ls s3-bucket-aws-cloudformation); then
+          if [ -d "s3-bucket-aws-cloudformation" ]; then
               ./s3-bucket-aws-cloudformation/delete-stack -p "${PROJECT_NAME}" "${MODULE_NAME}" "${PROJECT_AWS_REGION}"
           fi
     github-runner:
@@ -48,7 +48,7 @@ jobs:
 
         - name: Delete Github Runner
           run: |
-            if $(ls github-runner-aws-cloudformation); then
+            if [ -d "github-runner-aws-cloudformation" ]; then
                 ./github-runner-aws-cloudformation/delete-stack -p "${PROJECT_NAME}" "${MODULE_NAME}" "${PROJECT_AWS_REGION}"
             fi
 
