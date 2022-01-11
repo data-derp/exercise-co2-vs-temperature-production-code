@@ -55,7 +55,5 @@ In this step, we will bootstrap a Self-Hosted Github Runner. [What is a Github S
 
 ## Future Development
 - [x] Script to pull in data
-- [ ] Dockerise `./setup-workflows`
-- [ ] Option for running Github Runner locally in a Docker container
-- [ ] Manual workflow to delete S3 Bucket and contents
-- [ ] Manual workflow to delete Github Runner Cloudformation Stack (and Github Runner Reg Token)
+- [x] Manual workflow to delete S3 Bucket and contents
+- [x] Manual workflow to delete Github Runner Cloudformation Stack (and Github Runner Reg Token)
