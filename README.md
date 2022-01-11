@@ -41,21 +41,15 @@ git fetch source
 git rebase source/master
 ```
 ## Pipeline (optional)
-1. Bootstrap a Self-Hosted Github Runner
-   * **Hint:** [What is a Github Self-hosted Runner?](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
-   * In the root of this repository: `git submodule add git@github.com:data-derp/bootstrap-github-runner-cloudformation.git`
-   * Ensure your AWS Credentials are still valid and stored in an AWS Profile called `data-derp`
-   * `./bootstrap-github-runner-cloudformation/github-runner/aws-deps -p <project-name> -m <module-name> -u <your-github-username>`
-2. Go to your Repository and click **Settings** > **Actions**. Ensure **"Allow All Actions"** is selected
-![allow-actions.png](./assets/allow-actions.png)
-3. Create a Github workflow: `./go setup-workflow -p <project-name> -m <module-name> -r <project-aws-region>`
-  * The `project-name` and `module-name` must be the same as step (3)
-4. Commit the new workflow template and push to see your changes.
-5. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order) and push to see your changes run in the pipeline. See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
+In this step, we will bootstrap a Self-Hosted Github Runner. [What is a Github Self-hosted Runner?](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
+
+1. Set up a [Github Runner](https://github.com/data-derp/github-runner-aws-cloudformation#setup)
+2. Commit the new workflow template and push to see your changes.
+3. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order) and push to see your changes run in the pipeline. See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
 
 ## Future Development
 - [ ] Script to pull in data
 - [ ] Dockerise `./setup-workflow`
 - [ ] Option for running Github Runner locally in a Docker container
-- [ ] Manual workflow to delete Github Runner Cloudformation Stack (and Github Runner Reg Token)
 - [ ] Manual workflow to delete S3 Bucket and contents
+- [ ] Manual workflow to delete Github Runner Cloudformation Stack (and Github Runner Reg Token)
