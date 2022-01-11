@@ -26,22 +26,9 @@ jobs:
 
       - name: Delete S3 Bucket
         run: |
-          aws s3 rm "s3://${PROJECT_NAME}-${MODULE_NAME}" --recursive
-          stack_name="${PROJECT_NAME}-${MODULE_NAME}-co2-tmp-s3-bucket"
-          if [[ $(AWS_PROFILE="${aws_profile}"  aws cloudformation describe-stacks --stack-name "${stack_name}" --region "${PROJECT_AWS_REGION}") ]]; then
-            echo "Stack (${stack_name}) exists. Deleting..."
-            aws cloudformation delete-stack --stack-name "${stack_name}" \
-              --stack-name "${stack_name}" \
-              --region "${PROJECT_AWS_REGION}"
-          else
-            echo "Stack (${stack_name}) does not exist. Nothing to do here!"
+          if $(ls s3-bucket-aws-cloudformation); then
+              ./s3-bucket-aws-cloudformation/delete-stack -p "${PROJECT_NAME}" "${MODULE_NAME}" "${PROJECT_AWS_REGION}"
           fi
-
-          until $(AWS_PROFILE="${aws_profile}" aws cloudformation describe-stacks --stack-name "${stack_name}" --region "${PROJECT_AWS_REGION}" 2>&1 | grep -q "${stack_name} does not exist")
-          do
-            echo "Deleting..."
-            sleep 10
-          done
     github-runner:
       name: 'Delete Github Runner'
       runs-on: self-hosted
