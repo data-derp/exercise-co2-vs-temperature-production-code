@@ -45,17 +45,17 @@ replace_params() {
   fi
 }
 
-
 pushd "${script_dir}" > /dev/null
-  echo "Creating build-test-deploy workflow"
-  cp .github/workflows/example.yml.tpl ".github/workflows/build-test-deploy.yml"
-  replace_params ".github/workflows/build-test-deploy.yml"
-  echo "build-test-deploy workflow created"
-
-  echo "Creating delete workflow"
-  cp .github/workflows/example-delete.yml.tpl ".github/workflows/delete.yml"
-  replace_params ".github/workflows/delete.yml"
-  echo "delete workflow created"
+  workflow_path=".github/workflows"
+  template_files="example-build-test-deploy.yml.tpl example-delete-aws-resources.yml.tpl example-delete-github-runner.yml.tpl"
+  for i in $template_files
+  do
+    filename_without_example="${i//"example-"/}"
+    filename_without_tpl="${filename_without_example//".tpl"/}"
+    echo "Creating ${script_dir}/${workflow_path}/${filename_without_tpl}"
+    cp "${workflow_path}/${i}" "${workflow_path}/${filename_without_tpl}"
+    replace_params "${workflow_path}/${filename_without_tpl}"
+  done
 
 popd > /dev/null
 
