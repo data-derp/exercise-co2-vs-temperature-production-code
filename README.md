@@ -33,6 +33,8 @@ Manually trigger the workflow:
 
 Once this pipeline is successful, please visit AWS Cloudformation to ensure that the stack has been successfully deleted.
 
+**NOTE:** at the moment, the Stack fails to delete completely (role/policy detatchments) because of a failsafe. The Github Runner role is designed to not be able to change its own policies. Until a change is in place, this requires manual intervention by a user with higher permissions to fully delete the stack. However, the most important aspect is that it should successfully delete the compute machines that would impact your billing.
+
 ### AWS S3 Bucket
 We provide a "Delete AWS Resources" pipeline which deletes the S3 bucket created in the Quickstart. 
 
