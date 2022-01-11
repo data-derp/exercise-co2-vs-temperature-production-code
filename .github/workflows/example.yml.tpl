@@ -60,7 +60,7 @@ jobs:
         uses: ./.github/composite-actions/pytest
 
   data-ingestion:
-    name: 'Data Ingestion'
+    name: 'Deploy Data Ingestion Artifacts'
     runs-on: self-hosted
     environment: production
     env:
@@ -112,7 +112,7 @@ jobs:
         uses: ./.github/composite-actions/pytest
 
   data-transformation:
-    name: 'Data Transformation'
+    name: 'Deploy Data Transformation Artifacts'
     runs-on: self-hosted
     environment: production
     env:
