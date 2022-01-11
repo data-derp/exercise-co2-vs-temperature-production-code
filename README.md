@@ -52,7 +52,7 @@ In this step, we will bootstrap a Self-Hosted Github Runner. [What is a Github S
 4. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order) and push to see your changes run in the pipeline. See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
 
 ## Future Development
-- [ ] Script to pull in data
+- [x] Script to pull in data
 - [ ] Dockerise `./setup-workflows`
 - [ ] Option for running Github Runner locally in a Docker container
 - [ ] Manual workflow to delete S3 Bucket and contents
