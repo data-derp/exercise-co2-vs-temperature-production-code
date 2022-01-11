@@ -19,7 +19,9 @@ This code is designed to be deployed as an AWS Glue Job.
 2. Set up your [Development Environment](./development-environment.md)
 3. Fetch input data: `./go fetch-data`
 4. **Optionally** set up the [pipeline](#pipeline-optional)
-5. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
+5. **Sort of optional.** If you set up the pipeline in (4), you'll need to set up an AWS bucket to interact with
+   * Simply run: `git submodule add git@github.com:data-derp/s3-bucket-aws-cloudformation.git` and the pipeline will take care of [setting up the bucket](https://github.com/data-derp/s3-bucket-aws-cloudformation#setup) for you
+6. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
 
 ## Mirror the Repository
 1. Start importing a repository in your Github account:  
