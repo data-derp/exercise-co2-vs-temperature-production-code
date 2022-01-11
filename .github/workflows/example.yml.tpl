@@ -32,7 +32,7 @@ jobs:
       - name: Create S3 Bucket
         run: |
             if [ -d "s3-bucket-aws-cloudformation" ]; then
-                ./s3-bucket-aws-cloudformation/create-stack -p "${PROJECT_NAME}" "${MODULE_NAME}" "${PROJECT_AWS_REGION}"
+                ./s3-bucket-aws-cloudformation/create-stack -p "${PROJECT_NAME}" -m "${MODULE_NAME}" -r "${PROJECT_AWS_REGION}"
             fi
   data-ingestion-test:
     name: 'Test Data Ingestion'
