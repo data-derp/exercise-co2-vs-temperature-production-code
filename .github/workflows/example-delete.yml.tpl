@@ -49,6 +49,6 @@ jobs:
         - name: Delete Github Runner
           run: |
             if $(ls github-runner-aws-cloudformation); then
-                ./github-runner-aws-cloudformation/delete-stack.sh -p "${PROJECT_NAME}" "${MODULE_NAME}" "${PROJECT_AWS_REGION}"
+                ./github-runner-aws-cloudformation/delete-stack -p "${PROJECT_NAME}" "${MODULE_NAME}" "${PROJECT_AWS_REGION}"
             fi
 
