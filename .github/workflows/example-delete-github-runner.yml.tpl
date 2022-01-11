@@ -12,7 +12,6 @@ jobs:
     name: 'Delete Github Runner'
     runs-on: self-hosted
     environment: production
-    needs: ["base"]
     container:
       image: ghcr.io/kelseymok/terraform-workspace:latest
       credentials:
