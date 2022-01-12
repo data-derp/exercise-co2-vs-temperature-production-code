@@ -21,7 +21,6 @@ In order to reduce the amount of effort of setting up development environments a
 You have two options:
 - Open any .py file and use the green Play button towards the top-right corner
 - From your terminal run `python <your_path.py>`
-- Create a new .ipynb file and start experimenting with an interactive notebook
 
 ## Testing
 ### GUI

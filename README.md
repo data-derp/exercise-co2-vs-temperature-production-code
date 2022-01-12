@@ -18,8 +18,8 @@ This code is designed to be deployed as an AWS Glue Job.
 1. [Mirror this repo](#mirror-the-repository) in your account as a **PRIVATE** repo (since you're running your own self-hosted Github Runners, you'll want to ensure your project is Private)
 2. Set up your [Development Environment](./development-environment.md)
 3. Fetch input data: `./go fetch-data`
-4. **Optionally** set up the [pipeline](#pipeline-optional)
-5. **Sort of optional.** If you set up the pipeline in (4), you'll need to set up an AWS bucket to interact with
+4. **Optionally** set up a [CI/CD pipeline](#set-up-a-cicd-pipeline-optional)
+5. **Optional, but required if step (4) was completed.** If you set up the pipeline in (4), you'll need to set up an AWS bucket to interact with
    * Simply run: `git submodule add git@github.com:data-derp/s3-bucket-aws-cloudformation.git` and the pipeline will take care of [setting up the bucket](https://github.com/data-derp/s3-bucket-aws-cloudformation#setup) for you
 6. Fix the tests in `data-ingestion/` and `data-transformation/` (in that order). See [Development Environment](./development-environment.md) for tips and tricks on running python/tests in the dev-container.
 7. [Delete your AWS Resources](#delete-your-aws-resources) when you're done if you ran (4) and (5) (or risk AWS charges)
@@ -60,7 +60,7 @@ git remote add source git@github.com:data-derp/exercise-co2-vs-temperature-produ
 git fetch source
 git rebase source/master
 ```
-## Pipeline (optional)
+## Set up a CI/CD Pipeline (optional)
 In this step, we will bootstrap a Self-Hosted Github Runner. [What is a Github Self-hosted Runner?](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
 
 1. Set up a [Github Runner](https://github.com/data-derp/github-runner-aws-cloudformation#setup)
