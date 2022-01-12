@@ -391,14 +391,13 @@ class TestTransformation(TestPySpark):
         assert output_pandas.equals(expected_pandas) # check contents and data types
 
     def test_reshape_europe_big_three_emissions(self):
-        """Tests the reshape_europe_big_three_emissions method"""
         input_pandas = pd.DataFrame({
-                    "Year": [1999, 1999, 1999, 2020, 2020, 2021, 2100],
-                    "Country" : ["France", "Germany", "United Kingdom", "France", "Germany", "United Kingdom", "India"],
-                    "TotalEmissions": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0],
-                    "PerCapitaEmissions": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7],
-                    "ShareOfGlobalEmissions": [0.33, 0.33, 0.33, 0.5, 0.5, 0.5, 1.0]
-                })
+            "Year": [1999, 1999, 1999, 2020, 2020, 2021, 2100],
+            "Country" : ["France", "Germany", "United Kingdom", "France", "Germany", "United Kingdom", "India"],
+            "TotalEmissions": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0],
+            "PerCapitaEmissions": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7],
+            "ShareOfGlobalEmissions": [0.33, 0.33, 0.33, 0.5, 0.5, 0.5, 1.0]
+        })
         input_schema = StructType([
             StructField("Year", IntegerType(), True),
             StructField("Country", StringType(), True),
@@ -415,13 +414,13 @@ class TestTransformation(TestPySpark):
             "UnitedKingdom_TotalEmissions", "UnitedKingdom_PerCapitaEmissions",
         ]
         expected_pandas = pd.DataFrame({
-            "Year": pd.Series([1999, 2020, 2021], dtype=np.dtype("int32")),
-            "France_TotalEmissions": pd.Series([1.0, 4.0, np.nan], dtype=np.dtype("float32")),
-            "France_PerCapitaEmissions": pd.Series([0.1, 0.4, np.nan], dtype=np.dtype("float32")),
-            "Germany_TotalEmissions": pd.Series([2.0, 5.0, np.nan], dtype=np.dtype("float32")),
-            "Germany_PerCapitaEmissions": pd.Series([0.2, 0.5, np.nan], dtype=np.dtype("float32")),
-            "UnitedKingdom_TotalEmissions": pd.Series([3.0, np.nan, 6.0], dtype=np.dtype("float32")),
-            "UnitedKingdom_PerCapitaEmissions": pd.Series([0.3, np.nan, 0.6], dtype=np.dtype("float32"))
+            "Year": pd.Series([1999, 2020, 2021, 2100], dtype=np.dtype("int32")),
+            "France_TotalEmissions": pd.Series([1.0, 4.0, np.nan, np.nan], dtype=np.dtype("float32")),
+            "France_PerCapitaEmissions": pd.Series([0.1, 0.4, np.nan, np.nan], dtype=np.dtype("float32")),
+            "Germany_TotalEmissions": pd.Series([2.0, 5.0, np.nan, np.nan], dtype=np.dtype("float32")),
+            "Germany_PerCapitaEmissions": pd.Series([0.2, 0.5, np.nan, np.nan], dtype=np.dtype("float32")),
+            "UnitedKingdom_TotalEmissions": pd.Series([3.0, np.nan, 6.0, np.nan], dtype=np.dtype("float32")),
+            "UnitedKingdom_PerCapitaEmissions": pd.Series([0.3, np.nan, 0.6, np.nan], dtype=np.dtype("float32"))
         })
         expected_pandas = self.prepare_frame(
             expected_pandas,
