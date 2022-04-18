@@ -2,7 +2,7 @@
 In order to reduce the amount of effort of setting up development environments and fixing versioning between machines, a dev-container is provided which works with the Remote-Container functionality in Visual Studio code.
 
 ## Prerequisites
-* [Docker](https://www.docker.com/products/docker-desktop)
+* [Colima](https://github.com/abiosoft/colima) This is an alternative to [Docker Desktop](https://www.docker.com/products/docker-desktop) which requires license. Use Docker desktop only if your client project demands it and provide license.
 * [Visual Studio Code](https://code.visualstudio.com/download)
 
 ## Install
