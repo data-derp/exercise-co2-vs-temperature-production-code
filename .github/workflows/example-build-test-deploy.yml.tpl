@@ -34,6 +34,15 @@ jobs:
             if [ -d "s3-bucket-aws-cloudformation" ]; then
                 ./s3-bucket-aws-cloudformation/create-stack -p "${PROJECT_NAME}" -m "${MODULE_NAME}" -r "${PROJECT_AWS_REGION}"
             fi
+
+      - name: Upload Data
+        run: |
+          if [ -d "s3-bucket-aws-cloudformation" ]; then
+              aws s3 cp ./datasets/ingestion/inputs/EmissionsByCountry.csv s3://${PROJECT_NAME}-${MODULE_NAME}/data-source/EmissionsByCountry.csv
+              aws s3 cp ./datasets/ingestion/inputs/GlobalTemperatures.csv s3://${PROJECT_NAME}-${MODULE_NAME}/data-source/GlobalTemperatures.csv
+              aws s3 cp ./datasets/ingestion/inputs/TemperaturesByCountry.csv s3://${PROJECT_NAME}-${MODULE_NAME}/data-source/TemperaturesByCountry.csv
+          fi
+
   data-ingestion-test:
     name: 'Test Data Ingestion'
     runs-on: self-hosted
