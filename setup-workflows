@@ -47,7 +47,8 @@ replace_params() {
 
 pushd "${script_dir}" > /dev/null
   workflow_path=".github/workflows"
-  template_files="example-build-test-deploy.yml.tpl example-delete-aws-resources.yml.tpl example-delete-github-runner.yml.tpl"
+  template_files="example-build-test-deploy.yml.tpl"
+#  template_files="example-build-test-deploy.yml.tpl example-delete-aws-resources.yml.tpl example-delete-github-runner.yml.tpl"
   for i in $template_files
   do
     filename_without_example="${i//"example-"/}"

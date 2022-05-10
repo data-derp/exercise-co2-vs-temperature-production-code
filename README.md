@@ -25,6 +25,8 @@ This code is designed to be deployed as an AWS Glue Job.
 7. [Delete your AWS Resources](#delete-your-aws-resources) when you're done if you ran (4) and (5) (or risk AWS charges)
 
 ## Delete your AWS Resources
+**NOTE:** 10.05.2022: The Github Runner API Changed. This doesn't work anymore. Please manually delete your Cloudformation stacks from AWS (you'll need Admin Access and to empty your S3 bucket first). Workflows referenced below are now not copied.
+
 ### Github Runner
 The Github Runner is the most expensive piece of infrastructure and can easily rack up charges. It's your responsibility to bring them down again. There is a "Self-Destruct" workflow that we provide which triggers the deletion, but doesn't check the final status (because once the Github Runner has been deleted, we don't have the AWS connection to check it from the pipeline.) 
 
