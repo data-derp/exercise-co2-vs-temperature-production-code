@@ -33,6 +33,7 @@ jobs:
         run: |
             if [ -d "s3-bucket-aws-cloudformation" ]; then
                 ./s3-bucket-aws-cloudformation/create-stack -p "${PROJECT_NAME}" -m "${MODULE_NAME}" -r "${PROJECT_AWS_REGION}"
+                sleep 20
             fi
 
       - name: Upload Data
